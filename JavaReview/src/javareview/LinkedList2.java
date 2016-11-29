@@ -18,6 +18,9 @@ public class LinkedList2<T extends Comparable> {
         count=0;
     }
     
+    public Node2<T> getCurrent(){
+        return current;
+    }
     public void add(T t){
         if(start==null){
             start = new Node2(t);
@@ -85,7 +88,7 @@ public class LinkedList2<T extends Comparable> {
     
     public static void main(String[] args){
 
-	LinkedList2<Integer> list = new LinkedList2<Integer>();
+	LinkedList2<Integer> list = new LinkedList2();
 
 		list.add(5);
 		list.add(6);
