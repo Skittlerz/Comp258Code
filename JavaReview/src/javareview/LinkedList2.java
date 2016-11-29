@@ -9,7 +9,7 @@ package javareview;
  *
  * @author acb
  */
-public class LinkedList2<T> {
+public class LinkedList2<T extends Comparable> {
     private Node2<T> start;
     private Node2<T> current;
     int count;
@@ -24,9 +24,8 @@ public class LinkedList2<T> {
             current = start;
         }
         else{
-            Node2 temp = new Node2(t);
-            current.next = temp;
-            current = temp;
+            current.next = new Node2(t);
+            current = current.next;
         }
         count++;
     }
@@ -39,14 +38,30 @@ public class LinkedList2<T> {
             System.out.println(temp.getData());
             temp=temp.next;
         }
-     
+    }
+    
+    public T findMax(){
+        T max = start.getData();
+        Node2<T> temp = start;
+        
+        for(int i =1; i<count;i++){
+        
+            if( max.compareTo( temp.getData() )<0  ){
+
+                max = temp.getData();
+            }
+            
+            temp = temp.next;
+        }
+        
+        return max;
     }
     
  
     
     //Nested Inner Class Node2
     //Stores objects for linked list
-    class Node2<T>{
+    class Node2<T extends Comparable>{
 
         public Node2<T> next;
 
@@ -59,7 +74,7 @@ public class LinkedList2<T> {
         }
 
 
-        public Object getData(){
+        public T getData(){
             return data;
         }
 
@@ -67,4 +82,24 @@ public class LinkedList2<T> {
             this.data = data;
         }
     }
+    
+    public static void main(String[] args){
+
+	LinkedList2<Integer> list = new LinkedList2<Integer>();
+
+		list.add(5);
+		list.add(6);
+		list.add(7);
+		list.add(8);
+		list.add(9);
+		list.add(50);
+		list.add(11);
+		list.add(12);
+
+		list.printList();
+
+		Integer x = list.findMax();
+		System.out.println(x);
+
+	}
 }
