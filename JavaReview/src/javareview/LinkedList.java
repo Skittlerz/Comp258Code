@@ -50,10 +50,16 @@ public class LinkedList{
        temp.next = add;
     }
     
-    //public Object getElementAt(){
+    public Node getNodeAt(int i){
+        Node temp = items;
         
+        for(int count=0;count<i;count++){
+            temp= temp.next;
+        }
+        
+        return temp;
        
-    //}
+    }
     
     public void start(){
         current = items;
