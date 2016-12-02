@@ -5,22 +5,28 @@
  */
 package javareview;
 
+import java.util.Stack;
+
 /**
  *
  * @author braun1792
  */
 public class LinkedList{
     
-    Node items;
+    Node front;
     Node current;
     
     public LinkedList(){}
     
+    public Boolean isEmpty(){
+        return front == null;
+    }
+    
     public void add(Object i){
         
-        if(items==null){
-            items = new Node(i);
-            current = items;
+        if(isEmpty()){
+            front = new Node(i);
+            current = front;
         }else {
             Node temp = new Node(i);
             current.next = temp;
@@ -29,9 +35,9 @@ public class LinkedList{
     }
     
     public void addAfter(Object o){
-         if(items==null){
-            items = new Node(o);
-            current = items;
+         if(isEmpty()){
+            front = new Node(o);
+            current = front;
         }else {
              Node temp = new Node(o);
              temp.next = current.next;
@@ -42,7 +48,7 @@ public class LinkedList{
     
     public void addBefore(Object o){
         Node add = new Node(o);
-        Node temp = items;
+        Node temp = front;
         while(temp.next != current){
             temp = temp.next;
         }
@@ -51,7 +57,7 @@ public class LinkedList{
     }
     
     public Node getNodeAt(int i){
-        Node temp = items;
+        Node temp = front;
         
         for(int count=0;count<i;count++){
             temp= temp.next;
@@ -61,8 +67,8 @@ public class LinkedList{
        
     }
     
-    public void start(){
-        current = items;
+    public void front(){
+        current = front;
     }
     
     public void advance(){
@@ -74,11 +80,11 @@ public class LinkedList{
     }
     
     public void removeCurrent(){
-        if(current == items){
-            items = items.next;
-            current = items;
+        if(current == front){
+            front = front.next;
+            current = front;
         }else if(current != null){
-            Node temp = items;
+            Node temp = front;
             
             while(temp.next != current){
                 temp = temp.next;
@@ -91,12 +97,12 @@ public class LinkedList{
     
      public void removeRange(int start, int end){
          
-         Node temp1 = items;
-         Node temp2 = items;
+        Node temp1 = front;
+        Node temp2 = front;
          
-         for(int i=1; i<start-1;i++){
+        for(int i=1; i<start-1;i++){
             temp1 = temp1.next;
-         }
+        }
         
         for(int i=1; i<=end; i++){
             temp2 = temp2.next;
@@ -107,7 +113,7 @@ public class LinkedList{
     
     public void printList(){
         
-        Node temp = items;
+        Node temp = front;
         
         while(temp!=null){
             System.out.println(temp.getData());
@@ -142,6 +148,8 @@ public class LinkedList{
         System.out.println(">>"+list.getCurrent());
         list.removeRange(2, 4);
         list.printList();
+        
+       
     }
 
 public class Node {

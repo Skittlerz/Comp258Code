@@ -27,7 +27,9 @@ public class LinkedList2<T extends Comparable> {
             current = start;
         }
         else{
-            current.next = new Node2(t);
+            Node2 temp = new Node2(t);
+            current.next = temp;
+            temp.previous = current;
             current = current.next;
         }
         count++;
@@ -67,6 +69,7 @@ public class LinkedList2<T extends Comparable> {
     class Node2<T extends Comparable>{
 
         public Node2<T> next;
+        public Node2<T> previous;
 
         private T data;
 
@@ -75,7 +78,14 @@ public class LinkedList2<T extends Comparable> {
         public Node2(T data){
             setData(data);
         }
-
+        
+        public Node2<T> getNext(){
+            return next;
+        }
+        
+        public Node2<T> getPrevious(){
+            return previous;
+        }
 
         public T getData(){
             return data;
