@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javareview;
+package javatest1;
 
 /**
  *
@@ -27,3 +27,4 @@ public class OutOfBoundsException extends Exception{
         return("Error creating LinkedList from ArrayManager.");
     }
 }
+
