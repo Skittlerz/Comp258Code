@@ -6,6 +6,7 @@
 package javareview;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  *
@@ -69,20 +70,39 @@ public class ArrayManager {
         count--;
     }
     
-   public int binarySearch(int start, int end, int target){
+   public int binarySearch(int start, int end, int target, int checks){
+       checks++;
        int middle = (start+end)/2;
        
        if(data[middle].equals(target)){
+           System.out.println("Took "+checks+" checks to find.");
            return middle;
        }
        else if (start >= end) {
            return -1;
        }
        else if(((Comparable)data[middle]).compareTo(target) > 0){
-           return binarySearch(start, middle, target);
+           return binarySearch(start, middle-1, target, checks);
        }else {
-           return binarySearch(middle,end,target);
+           return binarySearch(middle+1,end,target,checks);
        }
+       
+   }
+   
+   public int linearSearch(int target){
+       int checks = 0;
+       int spot = -1;
+       for(int i=0;i<count;i++){
+           if(data[i].equals(target)){
+               spot = i;
+               break;
+           }
+           else if(spot == -1){
+               checks++;
+           }
+       }
+       System.out.println("Took "+checks+" checks to find.");
+       return spot;
    }
     
     public void add(Object o){
@@ -175,24 +195,38 @@ public class ArrayManager {
         return temp;
     }
     
+    public void sort(){
+        Arrays.sort(data);
+    }
+    
    
     
     
     public static void main(String args[]){
         
-        try{
-            Object[] testData = {1,2,3,4,5,7,34,66,5,88,34,11,23,90,54};
-            Arrays.sort(testData);
-            ArrayManager am = new ArrayManager(testData);
-            am.printArray();
-
-            int pos = am.binarySearch(0, testData.length, 34);
-            System.out.println(pos + " " +am.getElementAt(pos));
-            
-        }catch(OutOfBoundsException oobe){
-            System.out.println("Error");
-        }
         
+         try{
+            ArrayManager am = new ArrayManager();
+          
+            Random r = new Random();
+            
+            for(int i=0;i<1000;i++){
+                am.add(r.nextInt(10000));
+            }
+            
+            am.sort();
+            
+            int targetPos = am.binarySearch(0, am.data.length, 1000, 0);
+            
+            if(targetPos != -1){
+            System.out.println("Position: "+targetPos+" Value: "+am.getElementAt(targetPos));
+            }else{
+                System.out.println("Not Found.");
+            }
+            
+         }catch(OutOfBoundsException oobe){
+             
+         }
       
         
        
