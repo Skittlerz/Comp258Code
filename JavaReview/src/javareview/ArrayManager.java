@@ -69,7 +69,21 @@ public class ArrayManager {
         count--;
     }
     
-   
+   public int binarySearch(int start, int end, int target){
+       int middle = (start+end)/2;
+       
+       if(data[middle].equals(target)){
+           return middle;
+       }
+       else if (start >= end) {
+           return -1;
+       }
+       else if(((Comparable)data[middle]).compareTo(target) > 0){
+           return binarySearch(start, middle, target);
+       }else {
+           return binarySearch(middle,end,target);
+       }
+   }
     
     public void add(Object o){
         
@@ -166,31 +180,20 @@ public class ArrayManager {
     
     public static void main(String args[]){
         
-        Object[] testData = {1,2,3,4,5};
-        ArrayManager am = new ArrayManager(testData);
-        am.printArray();
-        
         try{
-            am.deleteAtPosition(2);
+            Object[] testData = {1,2,3,4,5,7,34,66,5,88,34,11,23,90,54};
+            Arrays.sort(testData);
+            ArrayManager am = new ArrayManager(testData);
             am.printArray();
-            am.add(6);
-            am.add(7);
-            am.printArray();
-            am.add(3,2);
-            am.printArray();
-            am.trim();
-            am.printArray();
-            am.trim();
-            am.printArray();
-            System.out.println("------------------");
-            LinkedList ll;
-            ll = am.getLinkedList();
-            ll.printList();
-        } catch(EmptyArrayManagerException eame){
-            System.out.println(eame.getMessage());
-        } catch(OutOfBoundsException oobe){
-            System.out.println(oobe.getMessage());
+
+            int pos = am.binarySearch(0, testData.length, 34);
+            System.out.println(pos + " " +am.getElementAt(pos));
+            
+        }catch(OutOfBoundsException oobe){
+            System.out.println("Error");
         }
+        
+      
         
        
     }
