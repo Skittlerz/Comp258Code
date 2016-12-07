@@ -225,7 +225,7 @@ public class ArrayManager {
             }
             
          }catch(OutOfBoundsException oobe){
-             
+             System.out.println(oobe.getMessage());
          }
       
         
