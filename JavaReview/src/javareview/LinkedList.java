@@ -194,6 +194,13 @@ public class LinkedList{
         }
     }
   
+//    public Node printRecursiveList(Node n){
+//        if(n.next == null){
+//            System.out.println(n.data);
+//        }else{
+//            return printRecursiveList(n.next);
+//        }
+//    }
     public static void main(String args[]){
         
         LinkedList list = new LinkedList();
@@ -263,5 +270,5 @@ public class Node {
         this.data = data;
     }   
 
-    }
+}
 }
