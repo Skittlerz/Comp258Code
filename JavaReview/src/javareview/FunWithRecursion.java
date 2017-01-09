@@ -5,6 +5,8 @@
  */
 package javareview;
 
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author braun1792
@@ -21,8 +23,11 @@ public class FunWithRecursion {
         }
        
     }
+    
+
 
 public static void main(String args[]){
-    System.out.println(AddEmUp(4));
+    
+    
 }    
 }
